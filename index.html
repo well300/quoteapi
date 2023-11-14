@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./styles.css">
+    <title>Quote Website</title>
+</head>
+<body>
+    <div class="container"> <!--1st-->
+        <div id="quote-container"> <!--2st-->
+            <p id="quote-text">Loading...</p>
+            <button onclick="fetchQuote()">Get New Quote</button>
+        </div>
+    </div>
+    <script>
+        async function fetchQuote(){
+            try{
+                // cont let var
+                const response = await
+                fetch('https://quotes-api-self.vercel.app/quote')
+
+                const data = await response.json()
+
+                const quoteText = document.getElementById('quote-text');
+                quoteText.textContent = data.quote;
+            } catch (error){
+                console.error('Error fetching quote: ', error.message)
+            }
+        }
+    </script>
+</body>
+</html>
